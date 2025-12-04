@@ -1,24 +1,18 @@
-//
-//  ContentView.swift
-//  infoExtractionApp
-//
-//  Created by 松尾悠太郎 on 2025/12/04.
-//
-
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+struct DeviceInfoView: View {
+    // バッテリー監視を有効化
+    init() {
+        UIDevice.current.isBatteryMonitoringEnabled = true
     }
-}
 
-#Preview {
-    ContentView()
+    var body: some View {
+        List {
+            Section(header: Text("デバイス情報")) {
+                Text("端末名: \(UIDevice.current.name)")
+                Text("OSバージョン: \(UIDevice.current.systemVersion)")
+                Text("バッテリー: \(Int(UIDevice.current.batteryLevel * 100))%")
+            }
+        }
+    }
 }
